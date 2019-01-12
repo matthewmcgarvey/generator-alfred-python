@@ -34,10 +34,13 @@ module.exports = class extends Generator {
       this.templatePath('setup.cfg'),
       this.destinationPath('setup.cfg'),
     );
+    this.fs.copy(
+      this.templatePath('install-requirements.sh'),
+      this.destinationPath('install-requirements.sh'),
+    );
   }
 
   install() {
-    exec('pip install -r requirements.txt --target ./');
-    this.fs.delete(this.destinationPath('setup.cfg'));
+    exec('./install-requirements.sh');
   }
 };
