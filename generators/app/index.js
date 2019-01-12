@@ -1,38 +1,33 @@
 'use strict';
 const Generator = require('yeoman-generator');
-const chalk = require('chalk');
-const yosay = require('yosay');
 
 module.exports = class extends Generator {
-  prompting() {
-    // Have Yeoman greet the user.
-    this.log(
-      yosay(`Welcome to the stellar ${chalk.red('generator-alfred-python')} generator!`)
-    );
-
-    const prompts = [
+  async prompting() {
+    this.props = await this.prompt([
       {
-        type: 'confirm',
-        name: 'someAnswer',
-        message: 'Would you like to enable this option?',
-        default: true
+        type: 'string',
+        name: 'name',
+        message: 'What would you like to name your workflow?',
+        default: 'hacker-news'
       }
-    ];
-
-    return this.prompt(prompts).then(props => {
-      // To access props later use this.props.someAnswer;
-      this.props = props;
-    });
+    ]);
   }
 
   writing() {
-    this.fs.copy(
-      this.templatePath('dummyfile.txt'),
-      this.destinationPath('dummyfile.txt')
+    this.fs.copyTpl(
+      this.templatePath('info.plist'),
+      this.destinationPath('info.plist'),
+      {
+        name: this.props.name
+      }
     );
-  }
-
-  install() {
-    this.installDependencies();
+    this.fs.copy(
+      this.templatePath('foo.py'),
+      this.destinationPath(`${this.props.name}.py`)
+    );
+    this.fs.copy(
+      this.templatePath('workflow/'),
+      this.destinationPath('workflow/'),
+    );
   }
 };
