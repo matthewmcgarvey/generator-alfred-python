@@ -11,10 +11,11 @@ def main(wf):
     for id in ids:
       response = web.get('https://hacker-news.firebaseio.com/v0/item/%s.json' % id)
       response.raise_for_status()
-      story = response.json()
-      wf.add_item(title=story['title'],
-                  subtitle=story['url'],
-                  arg=story['url'],
+      title = response.json()['title']
+      url = 'https://news.ycombinator.com/item?id=%s' % id
+      wf.add_item(title=title,
+                  subtitle=url,
+                  arg=url,
                   icon=ICON_WEB,
                   valid=True)
     wf.send_feedback()
