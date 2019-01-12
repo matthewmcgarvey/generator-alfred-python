@@ -1,5 +1,6 @@
 'use strict';
 const Generator = require('yeoman-generator');
+const exec = require('child_process').exec;
 
 module.exports = class extends Generator {
   async prompting() {
@@ -26,8 +27,17 @@ module.exports = class extends Generator {
       this.destinationPath(`${this.props.name}.py`)
     );
     this.fs.copy(
-      this.templatePath('workflow/'),
-      this.destinationPath('workflow/'),
+      this.templatePath('requirements.txt'),
+      this.destinationPath('requirements.txt'),
     );
+    this.fs.copy(
+      this.templatePath('setup.cfg'),
+      this.destinationPath('setup.cfg'),
+    );
+  }
+
+  install() {
+    exec('pip install -r requirements.txt --target ./');
+    this.fs.delete(this.destinationPath('setup.cfg'));
   }
 };
