@@ -35,12 +35,13 @@ module.exports = class extends Generator {
       this.destinationPath('setup.cfg'),
     );
     this.fs.copy(
-      this.templatePath('install-requirements.sh'),
-      this.destinationPath('install-requirements.sh'),
+      this.templatePath('install-libraries.sh'),
+      this.destinationPath('install-libraries.sh'),
     );
+    this.fs.write(this.destinationPath('./lib/.gitkeep'), '');
   }
 
   install() {
-    exec('./install-requirements.sh');
+    exec('pip install --target=. Alfred-Workflow')
   }
 };

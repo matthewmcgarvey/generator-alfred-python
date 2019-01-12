@@ -20,5 +20,5 @@ def main(wf):
     wf.send_feedback()
 
 if __name__ == u"__main__":
-    wf = Workflow()
+    wf = Workflow(libraries=['./lib'])
     sys.exit(wf.run(main))
