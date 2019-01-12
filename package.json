@@ -58,6 +58,5 @@
       "prettier"
     ]
   },
-  "repository": "matthewmcgarvey/generator-alfred-python",
-  "license": "Apache-2.0"
+  "repository": "matthewmcgarvey/generator-alfred-python"
 }

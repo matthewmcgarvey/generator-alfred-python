@@ -20,7 +20,3 @@ yo alfred-python
 ```
 
 Refer to [Alfred-Workflow](https://www.deanishe.net/alfred-workflow/index.html) documentation for how to continue developing your new workflow.
-
-## License
-
-Apache-2.0 © [Matthew McGarvey](https://github.com/matthewmcgarvey)
