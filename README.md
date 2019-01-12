@@ -10,7 +10,7 @@ First, install [Yeoman](http://yeoman.io) and generator-alfred-python using [npm
 
 ```bash
 npm install -g yo
-npm install -g generator-alfred-python
+npm install -g matthewmcgarvey/generator-alfred-python
 ```
 
 Create a new blank workflow in Alfred and open that workflow in terminal or navigate to it.
