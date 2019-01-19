@@ -1,6 +1,6 @@
 # encoding: utf-8
 import sys
-from workflow import Workflow, ICON_WEB, web
+from workflow import Workflow3, ICON_WEB, web
 def main(wf):
     url = 'https://hacker-news.firebaseio.com/v0/topstories.json'
     r = web.get(url)
@@ -21,5 +21,5 @@ def main(wf):
     wf.send_feedback()
 
 if __name__ == u"__main__":
-    wf = Workflow(libraries=['./lib'])
+    wf = Workflow3(libraries=['./lib'])
     sys.exit(wf.run(main))
